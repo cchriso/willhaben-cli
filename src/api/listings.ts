@@ -8,6 +8,7 @@ import {
   getCategoryTree,
   validateAttributes,
   getRequiredAttributesForPath,
+  findCategoryByPath,
   COMMON_ATTRIBUTES,
   type CategoryNode,
   type ValidationResult,
@@ -433,6 +434,15 @@ export async function validateListingOptions(
     };
   }
 
+  if (!findCategoryByPath(categoryTree, options.categoryPath)) {
+    return {
+      valid: false,
+      errors: [{ attributeCode: "_category", message: "Unknown category path" }],
+      missingRequired: [],
+      invalidValues: [],
+    };
+  }
+
   // Build provided attributes map including condition and delivery
   const providedAttributes: Record<string, string | string[]> = {
     ...options.attributes,
@@ -582,9 +592,10 @@ export async function createListing(
   if (!activateResponse.success) {
     return {
       success: false,
-      error: activateResponse.error || {
+      error: {
         code: "ACTIVATE_FAILED",
-        message: `Draft created (ID: ${adId}) but failed to publish`,
+        message: `Draft created (ID: ${adId}) but failed to publish. Do not create again blindly.`,
+        details: { draftId: adId, cause: activateResponse.error },
       },
     };
   }

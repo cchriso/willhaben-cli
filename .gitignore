@@ -7,6 +7,7 @@ dist/
 # Environment and secrets
 .env
 .env.*
+.willhaben-data/
 
 # OS files
 .DS_Store

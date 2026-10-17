@@ -15,6 +15,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
+      { text: 'MCP / n8n', link: '/guide/mcp' },
       { text: 'Commands', link: '/commands/' },
     ],
 
@@ -26,6 +27,7 @@ export default defineConfig({
             { text: 'Getting Started', link: '/guide/getting-started' },
             { text: 'Installation', link: '/guide/installation' },
             { text: 'Configuration', link: '/guide/configuration' },
+            { text: 'MCP / n8n', link: '/guide/mcp' },
           ]
         }
       ],

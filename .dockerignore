@@ -1,0 +1,8 @@
+.git
+node_modules
+.env
+.env.*
+.willhaben-data
+dist
+docs
+*.log

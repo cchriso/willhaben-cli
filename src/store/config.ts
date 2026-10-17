@@ -3,7 +3,7 @@ import { join } from "path";
 import { mkdir, readFile, writeFile, chmod } from "fs/promises";
 import type { Config, AuthTokens, UserInfo } from "../types/index.js";
 
-const CONFIG_DIR = join(homedir(), ".willhaben");
+const CONFIG_DIR = process.env.WILLHABEN_CONFIG_DIR || join(homedir(), ".willhaben");
 const CONFIG_FILE = join(CONFIG_DIR, "config.json");
 
 const DEFAULT_CONFIG: Config = {

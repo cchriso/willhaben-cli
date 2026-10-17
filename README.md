@@ -37,6 +37,24 @@
 
 ---
 
+## MCP / n8n
+
+Das Projekt enthält einen MCP-Server mit **20 Tools**, Streamable HTTP für n8n und stdio für lokale Agenten. Er nutzt die bestehenden API-Funktionen, ergänzt Workflow-Prompts und startet standardmäßig **nur lesend**.
+
+```bash
+bun install --frozen-lockfile
+bun run src/index.ts login
+export WILLHABEN_MCP_TOKEN="$(openssl rand -hex 32)"
+bun run mcp
+```
+
+Endpoint: `http://127.0.0.1:3100/mcp`, Header `Authorization: Bearer <dein Secret>`.
+In n8n den **MCP Client Tool**-Node mit **Streamable HTTP** verwenden. Für n8n Cloud ist eine erreichbare HTTPS-URL nötig; bei Docker ist `localhost` nicht automatisch der Host.
+
+**[Vollständige deutsche Anleitung: MCP, n8n, Docker, Tools und sichere Freigaben](docs/guide/mcp.md)**
+
+Schreibzugriffe benötigen `WILLHABEN_MCP_ALLOW_WRITES=true` und `confirm: true` pro Aufruf. Für echte menschliche Freigaben zusätzlich einen Approval-Workflow einrichten. Kein Marktplatz-Suchtool, Chat oder Kauf: angeboten werden die bereits vorhandenen Inserats-, Kategorie- und Bildfunktionen. Die Erstellung veröffentlicht sofort.
+
 ## Features
 
 **Listing Management**

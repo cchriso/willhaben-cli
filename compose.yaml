@@ -1,0 +1,16 @@
+services:
+  willhaben-mcp:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3100:3100"
+    environment:
+      WILLHABEN_MCP_TOKEN: ${WILLHABEN_MCP_TOKEN:?Set WILLHABEN_MCP_TOKEN in .env}
+      WILLHABEN_MCP_ALLOW_WRITES: ${WILLHABEN_MCP_ALLOW_WRITES:-false}
+      WILLHABEN_MCP_ALLOWED_HOSTS: ${WILLHABEN_MCP_ALLOWED_HOSTS:-localhost,127.0.0.1,willhaben-mcp}
+    volumes:
+      - ${WILLHABEN_CONFIG_PATH:-./.willhaben-data}:/home/bun/.willhaben
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
